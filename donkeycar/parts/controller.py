@@ -199,7 +199,7 @@ class JoystickController(object):
     def __init__(self, poll_delay=0.0,
                  max_throttle=1.0,
                  steering_axis='x',
-                 throttle_axis='rz',
+                 throttle_axis='y',
                  steering_scale=1.0,
                  throttle_scale=-1.0,
                  dev_fn='/dev/input/js0',
@@ -276,6 +276,7 @@ class JoystickController(object):
 
             if axis == self.steering_axis:
                 self.angle = self.steering_scale * axis_val
+                self.throttle = (self.throttle_scale * abs(axis_val) * self.max_throttle * -1)
                 print("angle", self.angle)
 
             if axis == self.throttle_axis:
@@ -284,7 +285,7 @@ class JoystickController(object):
                 print("throttle", self.throttle)
                 self.on_throttle_changes()
 
-            if button == 'trigger' and button_state == 1:
+            if button == 'tl2' and button_state == 1:
                 """
                 switch modes from:
                 user: human controlled steer and throttle
@@ -299,7 +300,7 @@ class JoystickController(object):
                     self.mode = 'user'
                 print('new mode:', self.mode)
 
-            if button == 'circle' and button_state == 1:
+            if button == 'tr2' and button_state == 1:
                 """
                 toggle recording on/off
                 """
@@ -312,7 +313,7 @@ class JoystickController(object):
 
                 print('recording:', self.recording)
 
-            if button == 'triangle' and button_state == 1:
+            if button == 'z' and button_state == 1:
                 """
                 increase max throttle setting
                 """
@@ -323,7 +324,7 @@ class JoystickController(object):
 
                 print('max_throttle:', self.max_throttle)
 
-            if button == 'cross' and button_state == 1:
+            if button == 'y' and button_state == 1:
                 """
                 decrease max throttle setting
                 """
@@ -334,28 +335,28 @@ class JoystickController(object):
 
                 print('max_throttle:', self.max_throttle)
 
-            if button == 'base' and button_state == 1:
+            if button == 'a' and button_state == 1:
                 """
                 increase throttle scale
                 """
                 self.throttle_scale = round(min(0.0, self.throttle_scale + 0.05), 2)
                 print('throttle_scale:', self.throttle_scale)
 
-            if button == 'top2' and button_state == 1:
+            if button == 'c' and button_state == 1:
                 """
                 decrease throttle scale
                 """
                 self.throttle_scale = round(max(-1.0, self.throttle_scale - 0.05), 2)
                 print('throttle_scale:', self.throttle_scale)
 
-            if button == 'base2' and button_state == 1:
+            if button == 'b' and button_state == 1:
                 """
                 increase steering scale
                 """
                 self.steering_scale = round(min(1.0, self.steering_scale + 0.05), 2)
                 print('steering_scale:', self.steering_scale)
 
-            if button == 'pinkie' and button_state == 1:
+            if button == 'x' and button_state == 1:
                 """
                 decrease steering scale
                 """
