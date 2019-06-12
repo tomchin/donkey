@@ -67,9 +67,7 @@ sudo vi /media/userID/UUID/etc/hostname
 sudo vi /media/userID/UUID/etc/hosts
 ```
 
-Now you're SD card is ready. Eject it from your computer, put it in the Pi
-and plug in the Pi.
-
+Now your SD card is ready. Eject it from your computer, put it in the Pi, and plug in the Pi.
 
 ### Connecting to the Pi
 
@@ -149,7 +147,7 @@ python -c "import donkeycar as dk; print(dk.__version__)"
 Now generate the drive script, config and folder structure for your car.
 
 ```bash
-donkey createcar ~/
+donkey createcar ~/mycar
 ```
 
 ----
@@ -167,8 +165,8 @@ pip install tensorflow==1.8.0
 
 * Install donkey source and create your local working dir:
 ```bash
-git clone https://github.com/wroscoe/donkey donkeycar
-pip install -e .
+git clone https://github.com/autorope/donkeycar
+pip install -e ./donkeycar
 ```
 
 [Next: Calibrate your car.](./calibrate.md)
@@ -185,6 +183,8 @@ pip install -e .
 
 * Change to a dir you would like to use as the head of your projects.
 
+* Right click can be used to paste into prompt.
+
 ```
 mkdir projects
 cd projects
@@ -193,14 +193,20 @@ cd projects
 * Get the latest donkey from Github.
 
 ```
-git clone https://github.com/wroscoe/donkey
-cd donkey
+git clone https://github.com/autorope/donkeycar
+cd donkeycar
+```
+
+* Navigate to git master branch
+
+```
+git checkout master
 ```
 
 * Create the Python Anaconda environment
 
 ```
-conda env create -f envs\windows.yml
+conda env create -f install\envs\windows.yml
 activate donkey
 ```
 
@@ -245,8 +251,8 @@ cd projects
 * Get the latest donkey from Github.
 
 ```
-git clone https://github.com/wroscoe/donkey
-cd donkey
+git clone https://github.com/autorope/donkeycar
+cd donkeycar
 ```
 
 * Create the Python anaconda environment
@@ -259,7 +265,7 @@ source activate donkey
 * Install Tensorflow
 
 ```
-pip install https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.3.0-py3-none-any.whl
+pip install https://storage.googleapis.com/tensorflow/mac/cpu/tensorflow-1.10.1-py3-none-any.whl
 ```
 
 
@@ -304,7 +310,7 @@ When you've created your new instance, open it up and create a new [Jupyter Note
 
 * In the first cell, type:
 ```python
-!git clone https://github.com/wroscoe/donkey ~/SageMaker/donkey
+!git clone https://github.com/autorope/donkeycar ~/SageMaker/donkey
 ```
 
 * Close the Jupyter Notebook (not the instance!). You can delete it if you want.
